@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.javatribe.ams.dao.mymapper.FrontMessageBoardMapper">
+	<select id="selectMessageBoardList" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT 
+		mb.mebo_id,mb.mebo_title,mb.mebo_content,mb.mebo_photo_url,count(mbc.mebo_id) as count,u.user_name,u.user_photo_url,mb.mebo_create_date
+		FROM message_board AS mb
+		INNER JOIN users AS u ON u.user_id=mb.user_id
+		LEFT JOIN message_board_comments AS mbc ON mb.mebo_id=mbc.mebo_id GROUP BY mb.mebo_id
+		ORDER BY mb.mebo_id DESC
+		LIMIT #{startId,jdbcType=INTEGER},#{count,jdbcType=INTEGER};
+		
+		
+	</select>
+
+</mapper>

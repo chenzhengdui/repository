@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.javatribe.ams.dao.mapper.MessageBoardCommentsMapper" >
+  <resultMap id="BaseResultMap" type="org.javatribe.ams.entity.MessageBoardComments" >
+    <id column="mbco_id" property="mbcoId" jdbcType="INTEGER" />
+    <result column="mebo_id" property="meboId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="mbco_content" property="mbcoContent" jdbcType="VARCHAR" />
+    <result column="mbco_modify_date" property="mbcoModifyDate" jdbcType="TIMESTAMP" />
+    <result column="mbco_create_date" property="mbcoCreateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mbco_id, mebo_id, user_id, mbco_content, mbco_modify_date, mbco_create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from message_board_comments
+    where mbco_id = #{mbcoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from message_board_comments
+    where mbco_id = #{mbcoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.javatribe.ams.entity.MessageBoardComments" >
+    insert into message_board_comments (mbco_id, mebo_id, user_id, 
+      mbco_content, mbco_modify_date, mbco_create_date
+      )
+    values (#{mbcoId,jdbcType=INTEGER}, #{meboId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{mbcoContent,jdbcType=VARCHAR}, #{mbcoModifyDate,jdbcType=TIMESTAMP}, #{mbcoCreateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.javatribe.ams.entity.MessageBoardComments" >
+    insert into message_board_comments
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mbcoId != null" >
+        mbco_id,
+      </if>
+      <if test="meboId != null" >
+        mebo_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="mbcoContent != null" >
+        mbco_content,
+      </if>
+      <if test="mbcoModifyDate != null" >
+        mbco_modify_date,
+      </if>
+      <if test="mbcoCreateDate != null" >
+        mbco_create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mbcoId != null" >
+        #{mbcoId,jdbcType=INTEGER},
+      </if>
+      <if test="meboId != null" >
+        #{meboId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="mbcoContent != null" >
+        #{mbcoContent,jdbcType=VARCHAR},
+      </if>
+      <if test="mbcoModifyDate != null" >
+        #{mbcoModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mbcoCreateDate != null" >
+        #{mbcoCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.javatribe.ams.entity.MessageBoardComments" >
+    update message_board_comments
+    <set >
+      <if test="meboId != null" >
+        mebo_id = #{meboId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="mbcoContent != null" >
+        mbco_content = #{mbcoContent,jdbcType=VARCHAR},
+      </if>
+      <if test="mbcoModifyDate != null" >
+        mbco_modify_date = #{mbcoModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mbcoCreateDate != null" >
+        mbco_create_date = #{mbcoCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where mbco_id = #{mbcoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.javatribe.ams.entity.MessageBoardComments" >
+    update message_board_comments
+    set mebo_id = #{meboId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      mbco_content = #{mbcoContent,jdbcType=VARCHAR},
+      mbco_modify_date = #{mbcoModifyDate,jdbcType=TIMESTAMP},
+      mbco_create_date = #{mbcoCreateDate,jdbcType=TIMESTAMP}
+    where mbco_id = #{mbcoId,jdbcType=INTEGER}
+  </update>
+</mapper>

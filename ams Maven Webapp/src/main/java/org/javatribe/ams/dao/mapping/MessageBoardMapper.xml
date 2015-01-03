@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.javatribe.ams.dao.mapper.MessageBoardMapper" >
+  <resultMap id="BaseResultMap" type="org.javatribe.ams.entity.MessageBoard" >
+    <id column="mebo_id" property="meboId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="mebo_title" property="meboTitle" jdbcType="VARCHAR" />
+    <result column="mebo_content" property="meboContent" jdbcType="VARCHAR" />
+    <result column="mebo_photo_url" property="meboPhotoUrl" jdbcType="VARCHAR" />
+    <result column="mebo_modify_date" property="meboModifyDate" jdbcType="TIMESTAMP" />
+    <result column="mebo_create_date" property="meboCreateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mebo_id, user_id, mebo_title, mebo_content, mebo_photo_url, mebo_modify_date, mebo_create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from message_board
+    where mebo_id = #{meboId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from message_board
+    where mebo_id = #{meboId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.javatribe.ams.entity.MessageBoard" >
+    insert into message_board (mebo_id, user_id, mebo_title, 
+      mebo_content, mebo_photo_url, mebo_modify_date, 
+      mebo_create_date)
+    values (#{meboId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{meboTitle,jdbcType=VARCHAR}, 
+      #{meboContent,jdbcType=VARCHAR}, #{meboPhotoUrl,jdbcType=VARCHAR}, #{meboModifyDate,jdbcType=TIMESTAMP}, 
+      #{meboCreateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.javatribe.ams.entity.MessageBoard" >
+    insert into message_board
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="meboId != null" >
+        mebo_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="meboTitle != null" >
+        mebo_title,
+      </if>
+      <if test="meboContent != null" >
+        mebo_content,
+      </if>
+      <if test="meboPhotoUrl != null" >
+        mebo_photo_url,
+      </if>
+      <if test="meboModifyDate != null" >
+        mebo_modify_date,
+      </if>
+      <if test="meboCreateDate != null" >
+        mebo_create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="meboId != null" >
+        #{meboId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="meboTitle != null" >
+        #{meboTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="meboContent != null" >
+        #{meboContent,jdbcType=VARCHAR},
+      </if>
+      <if test="meboPhotoUrl != null" >
+        #{meboPhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="meboModifyDate != null" >
+        #{meboModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="meboCreateDate != null" >
+        #{meboCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.javatribe.ams.entity.MessageBoard" >
+    update message_board
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="meboTitle != null" >
+        mebo_title = #{meboTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="meboContent != null" >
+        mebo_content = #{meboContent,jdbcType=VARCHAR},
+      </if>
+      <if test="meboPhotoUrl != null" >
+        mebo_photo_url = #{meboPhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="meboModifyDate != null" >
+        mebo_modify_date = #{meboModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="meboCreateDate != null" >
+        mebo_create_date = #{meboCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where mebo_id = #{meboId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.javatribe.ams.entity.MessageBoard" >
+    update message_board
+    set user_id = #{userId,jdbcType=INTEGER},
+      mebo_title = #{meboTitle,jdbcType=VARCHAR},
+      mebo_content = #{meboContent,jdbcType=VARCHAR},
+      mebo_photo_url = #{meboPhotoUrl,jdbcType=VARCHAR},
+      mebo_modify_date = #{meboModifyDate,jdbcType=TIMESTAMP},
+      mebo_create_date = #{meboCreateDate,jdbcType=TIMESTAMP}
+    where mebo_id = #{meboId,jdbcType=INTEGER}
+  </update>
+</mapper>

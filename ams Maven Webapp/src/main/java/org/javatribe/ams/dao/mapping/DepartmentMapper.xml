@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.javatribe.ams.dao.mapper.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="org.javatribe.ams.entity.Department" >
+    <id column="depa_id" property="depaId" jdbcType="INTEGER" />
+    <result column="depa_no" property="depaNo" jdbcType="VARCHAR" />
+    <result column="depa_name" property="depaName" jdbcType="VARCHAR" />
+    <result column="depa_description" property="depaDescription" jdbcType="VARCHAR" />
+    <result column="depa_address" property="depaAddress" jdbcType="VARCHAR" />
+    <result column="depa_phone" property="depaPhone" jdbcType="VARCHAR" />
+    <result column="depa_modify_date" property="depaModifyDate" jdbcType="TIMESTAMP" />
+    <result column="depa_create_date" property="depaCreateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    depa_id, depa_no, depa_name, depa_description, depa_address, depa_phone, depa_modify_date, 
+    depa_create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from department
+    where depa_id = #{depaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from department
+    where depa_id = #{depaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.javatribe.ams.entity.Department" >
+    insert into department (depa_id, depa_no, depa_name, 
+      depa_description, depa_address, depa_phone, 
+      depa_modify_date, depa_create_date)
+    values (#{depaId,jdbcType=INTEGER}, #{depaNo,jdbcType=VARCHAR}, #{depaName,jdbcType=VARCHAR}, 
+      #{depaDescription,jdbcType=VARCHAR}, #{depaAddress,jdbcType=VARCHAR}, #{depaPhone,jdbcType=VARCHAR}, 
+      #{depaModifyDate,jdbcType=TIMESTAMP}, #{depaCreateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.javatribe.ams.entity.Department" >
+    insert into department
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="depaId != null" >
+        depa_id,
+      </if>
+      <if test="depaNo != null" >
+        depa_no,
+      </if>
+      <if test="depaName != null" >
+        depa_name,
+      </if>
+      <if test="depaDescription != null" >
+        depa_description,
+      </if>
+      <if test="depaAddress != null" >
+        depa_address,
+      </if>
+      <if test="depaPhone != null" >
+        depa_phone,
+      </if>
+      <if test="depaModifyDate != null" >
+        depa_modify_date,
+      </if>
+      <if test="depaCreateDate != null" >
+        depa_create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="depaId != null" >
+        #{depaId,jdbcType=INTEGER},
+      </if>
+      <if test="depaNo != null" >
+        #{depaNo,jdbcType=VARCHAR},
+      </if>
+      <if test="depaName != null" >
+        #{depaName,jdbcType=VARCHAR},
+      </if>
+      <if test="depaDescription != null" >
+        #{depaDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="depaAddress != null" >
+        #{depaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="depaPhone != null" >
+        #{depaPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="depaModifyDate != null" >
+        #{depaModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="depaCreateDate != null" >
+        #{depaCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.javatribe.ams.entity.Department" >
+    update department
+    <set >
+      <if test="depaNo != null" >
+        depa_no = #{depaNo,jdbcType=VARCHAR},
+      </if>
+      <if test="depaName != null" >
+        depa_name = #{depaName,jdbcType=VARCHAR},
+      </if>
+      <if test="depaDescription != null" >
+        depa_description = #{depaDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="depaAddress != null" >
+        depa_address = #{depaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="depaPhone != null" >
+        depa_phone = #{depaPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="depaModifyDate != null" >
+        depa_modify_date = #{depaModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="depaCreateDate != null" >
+        depa_create_date = #{depaCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where depa_id = #{depaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.javatribe.ams.entity.Department" >
+    update department
+    set depa_no = #{depaNo,jdbcType=VARCHAR},
+      depa_name = #{depaName,jdbcType=VARCHAR},
+      depa_description = #{depaDescription,jdbcType=VARCHAR},
+      depa_address = #{depaAddress,jdbcType=VARCHAR},
+      depa_phone = #{depaPhone,jdbcType=VARCHAR},
+      depa_modify_date = #{depaModifyDate,jdbcType=TIMESTAMP},
+      depa_create_date = #{depaCreateDate,jdbcType=TIMESTAMP}
+    where depa_id = #{depaId,jdbcType=INTEGER}
+  </update>
+</mapper>

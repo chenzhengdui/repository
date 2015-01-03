@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.javatribe.ams.dao.mapper.AdminMapper" >
+  <resultMap id="BaseResultMap" type="org.javatribe.ams.entity.Admin" >
+    <id column="admi_id" property="admiId" jdbcType="INTEGER" />
+    <result column="admi_no" property="admiNo" jdbcType="VARCHAR" />
+    <result column="admi_password" property="admiPassword" jdbcType="VARCHAR" />
+    <result column="admi_name" property="admiName" jdbcType="VARCHAR" />
+    <result column="admi_modify_date" property="admiModifyDate" jdbcType="TIMESTAMP" />
+    <result column="admi_create_date" property="admiCreateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    admi_id, admi_no, admi_password, admi_name, admi_modify_date, admi_create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin
+    where admi_id = #{admiId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from admin
+    where admi_id = #{admiId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.javatribe.ams.entity.Admin" >
+    insert into admin (admi_id, admi_no, admi_password, 
+      admi_name, admi_modify_date, admi_create_date
+      )
+    values (#{admiId,jdbcType=INTEGER}, #{admiNo,jdbcType=VARCHAR}, #{admiPassword,jdbcType=VARCHAR}, 
+      #{admiName,jdbcType=VARCHAR}, #{admiModifyDate,jdbcType=TIMESTAMP}, #{admiCreateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.javatribe.ams.entity.Admin" >
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="admiId != null" >
+        admi_id,
+      </if>
+      <if test="admiNo != null" >
+        admi_no,
+      </if>
+      <if test="admiPassword != null" >
+        admi_password,
+      </if>
+      <if test="admiName != null" >
+        admi_name,
+      </if>
+      <if test="admiModifyDate != null" >
+        admi_modify_date,
+      </if>
+      <if test="admiCreateDate != null" >
+        admi_create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="admiId != null" >
+        #{admiId,jdbcType=INTEGER},
+      </if>
+      <if test="admiNo != null" >
+        #{admiNo,jdbcType=VARCHAR},
+      </if>
+      <if test="admiPassword != null" >
+        #{admiPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="admiName != null" >
+        #{admiName,jdbcType=VARCHAR},
+      </if>
+      <if test="admiModifyDate != null" >
+        #{admiModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admiCreateDate != null" >
+        #{admiCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.javatribe.ams.entity.Admin" >
+    update admin
+    <set >
+      <if test="admiNo != null" >
+        admi_no = #{admiNo,jdbcType=VARCHAR},
+      </if>
+      <if test="admiPassword != null" >
+        admi_password = #{admiPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="admiName != null" >
+        admi_name = #{admiName,jdbcType=VARCHAR},
+      </if>
+      <if test="admiModifyDate != null" >
+        admi_modify_date = #{admiModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admiCreateDate != null" >
+        admi_create_date = #{admiCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where admi_id = #{admiId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.javatribe.ams.entity.Admin" >
+    update admin
+    set admi_no = #{admiNo,jdbcType=VARCHAR},
+      admi_password = #{admiPassword,jdbcType=VARCHAR},
+      admi_name = #{admiName,jdbcType=VARCHAR},
+      admi_modify_date = #{admiModifyDate,jdbcType=TIMESTAMP},
+      admi_create_date = #{admiCreateDate,jdbcType=TIMESTAMP}
+    where admi_id = #{admiId,jdbcType=INTEGER}
+  </update>
+</mapper>

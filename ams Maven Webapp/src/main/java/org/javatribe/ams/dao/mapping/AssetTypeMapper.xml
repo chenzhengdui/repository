@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.javatribe.ams.dao.mapper.AssetTypeMapper" >
+  <resultMap id="BaseResultMap" type="org.javatribe.ams.entity.AssetType" >
+    <id column="asty_id" property="astyId" jdbcType="INTEGER" />
+    <result column="asty_name" property="astyName" jdbcType="VARCHAR" />
+    <result column="asty_note" property="astyNote" jdbcType="VARCHAR" />
+    <result column="asty_modify_date" property="astyModifyDate" jdbcType="TIMESTAMP" />
+    <result column="asty_create_date" property="astyCreateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    asty_id, asty_name, asty_note, asty_modify_date, asty_create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_type
+    where asty_id = #{astyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from asset_type
+    where asty_id = #{astyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.javatribe.ams.entity.AssetType" >
+    insert into asset_type (asty_id, asty_name, asty_note, 
+      asty_modify_date, asty_create_date)
+    values (#{astyId,jdbcType=INTEGER}, #{astyName,jdbcType=VARCHAR}, #{astyNote,jdbcType=VARCHAR}, 
+      #{astyModifyDate,jdbcType=TIMESTAMP}, #{astyCreateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.javatribe.ams.entity.AssetType" >
+    insert into asset_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="astyId != null" >
+        asty_id,
+      </if>
+      <if test="astyName != null" >
+        asty_name,
+      </if>
+      <if test="astyNote != null" >
+        asty_note,
+      </if>
+      <if test="astyModifyDate != null" >
+        asty_modify_date,
+      </if>
+      <if test="astyCreateDate != null" >
+        asty_create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="astyId != null" >
+        #{astyId,jdbcType=INTEGER},
+      </if>
+      <if test="astyName != null" >
+        #{astyName,jdbcType=VARCHAR},
+      </if>
+      <if test="astyNote != null" >
+        #{astyNote,jdbcType=VARCHAR},
+      </if>
+      <if test="astyModifyDate != null" >
+        #{astyModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="astyCreateDate != null" >
+        #{astyCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.javatribe.ams.entity.AssetType" >
+    update asset_type
+    <set >
+      <if test="astyName != null" >
+        asty_name = #{astyName,jdbcType=VARCHAR},
+      </if>
+      <if test="astyNote != null" >
+        asty_note = #{astyNote,jdbcType=VARCHAR},
+      </if>
+      <if test="astyModifyDate != null" >
+        asty_modify_date = #{astyModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="astyCreateDate != null" >
+        asty_create_date = #{astyCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where asty_id = #{astyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.javatribe.ams.entity.AssetType" >
+    update asset_type
+    set asty_name = #{astyName,jdbcType=VARCHAR},
+      asty_note = #{astyNote,jdbcType=VARCHAR},
+      asty_modify_date = #{astyModifyDate,jdbcType=TIMESTAMP},
+      asty_create_date = #{astyCreateDate,jdbcType=TIMESTAMP}
+    where asty_id = #{astyId,jdbcType=INTEGER}
+  </update>
+</mapper>

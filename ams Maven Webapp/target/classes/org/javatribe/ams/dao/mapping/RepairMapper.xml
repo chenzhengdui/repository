@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.javatribe.ams.dao.mapper.RepairMapper" >
+  <resultMap id="BaseResultMap" type="org.javatribe.ams.entity.Repair" >
+    <id column="repa_id" property="repaId" jdbcType="INTEGER" />
+    <result column="asse_id" property="asseId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="repa_address" property="repaAddress" jdbcType="VARCHAR" />
+    <result column="repa_reason" property="repaReason" jdbcType="VARCHAR" />
+    <result column="repa_note" property="repaNote" jdbcType="VARCHAR" />
+    <result column="repa_phone" property="repaPhone" jdbcType="VARCHAR" />
+    <result column="repa_status" property="repaStatus" jdbcType="BIT" />
+    <result column="repa_commont" property="repaCommont" jdbcType="VARCHAR" />
+    <result column="repa_modify_date" property="repaModifyDate" jdbcType="TIMESTAMP" />
+    <result column="repa_create_date" property="repaCreateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    repa_id, asse_id, user_id, repa_address, repa_reason, repa_note, repa_phone, repa_status, 
+    repa_commont, repa_modify_date, repa_create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from repair
+    where repa_id = #{repaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from repair
+    where repa_id = #{repaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.javatribe.ams.entity.Repair" >
+    insert into repair (repa_id, asse_id, user_id, 
+      repa_address, repa_reason, repa_note, 
+      repa_phone, repa_status, repa_commont, 
+      repa_modify_date, repa_create_date)
+    values (#{repaId,jdbcType=INTEGER}, #{asseId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{repaAddress,jdbcType=VARCHAR}, #{repaReason,jdbcType=VARCHAR}, #{repaNote,jdbcType=VARCHAR}, 
+      #{repaPhone,jdbcType=VARCHAR}, #{repaStatus,jdbcType=BIT}, #{repaCommont,jdbcType=VARCHAR}, 
+      #{repaModifyDate,jdbcType=TIMESTAMP}, #{repaCreateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.javatribe.ams.entity.Repair" >
+    insert into repair
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="repaId != null" >
+        repa_id,
+      </if>
+      <if test="asseId != null" >
+        asse_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="repaAddress != null" >
+        repa_address,
+      </if>
+      <if test="repaReason != null" >
+        repa_reason,
+      </if>
+      <if test="repaNote != null" >
+        repa_note,
+      </if>
+      <if test="repaPhone != null" >
+        repa_phone,
+      </if>
+      <if test="repaStatus != null" >
+        repa_status,
+      </if>
+      <if test="repaCommont != null" >
+        repa_commont,
+      </if>
+      <if test="repaModifyDate != null" >
+        repa_modify_date,
+      </if>
+      <if test="repaCreateDate != null" >
+        repa_create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="repaId != null" >
+        #{repaId,jdbcType=INTEGER},
+      </if>
+      <if test="asseId != null" >
+        #{asseId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="repaAddress != null" >
+        #{repaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="repaReason != null" >
+        #{repaReason,jdbcType=VARCHAR},
+      </if>
+      <if test="repaNote != null" >
+        #{repaNote,jdbcType=VARCHAR},
+      </if>
+      <if test="repaPhone != null" >
+        #{repaPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="repaStatus != null" >
+        #{repaStatus,jdbcType=BIT},
+      </if>
+      <if test="repaCommont != null" >
+        #{repaCommont,jdbcType=VARCHAR},
+      </if>
+      <if test="repaModifyDate != null" >
+        #{repaModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repaCreateDate != null" >
+        #{repaCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.javatribe.ams.entity.Repair" >
+    update repair
+    <set >
+      <if test="asseId != null" >
+        asse_id = #{asseId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="repaAddress != null" >
+        repa_address = #{repaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="repaReason != null" >
+        repa_reason = #{repaReason,jdbcType=VARCHAR},
+      </if>
+      <if test="repaNote != null" >
+        repa_note = #{repaNote,jdbcType=VARCHAR},
+      </if>
+      <if test="repaPhone != null" >
+        repa_phone = #{repaPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="repaStatus != null" >
+        repa_status = #{repaStatus,jdbcType=BIT},
+      </if>
+      <if test="repaCommont != null" >
+        repa_commont = #{repaCommont,jdbcType=VARCHAR},
+      </if>
+      <if test="repaModifyDate != null" >
+        repa_modify_date = #{repaModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repaCreateDate != null" >
+        repa_create_date = #{repaCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where repa_id = #{repaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.javatribe.ams.entity.Repair" >
+    update repair
+    set asse_id = #{asseId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      repa_address = #{repaAddress,jdbcType=VARCHAR},
+      repa_reason = #{repaReason,jdbcType=VARCHAR},
+      repa_note = #{repaNote,jdbcType=VARCHAR},
+      repa_phone = #{repaPhone,jdbcType=VARCHAR},
+      repa_status = #{repaStatus,jdbcType=BIT},
+      repa_commont = #{repaCommont,jdbcType=VARCHAR},
+      repa_modify_date = #{repaModifyDate,jdbcType=TIMESTAMP},
+      repa_create_date = #{repaCreateDate,jdbcType=TIMESTAMP}
+    where repa_id = #{repaId,jdbcType=INTEGER}
+  </update>
+</mapper>

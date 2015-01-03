@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.javatribe.ams.dao.mapper.FeedbackMapper" >
+  <resultMap id="BaseResultMap" type="org.javatribe.ams.entity.Feedback" >
+    <id column="feed_id" property="feedId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="feed_title" property="feedTitle" jdbcType="VARCHAR" />
+    <result column="feed_content" property="feedContent" jdbcType="VARCHAR" />
+    <result column="feed_status" property="feedStatus" jdbcType="BIT" />
+    <result column="feed_modify_date" property="feedModifyDate" jdbcType="TIMESTAMP" />
+    <result column="feed_create_date" property="feedCreateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    feed_id, user_id, feed_title, feed_content, feed_status, feed_modify_date, feed_create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from feedback
+    where feed_id = #{feedId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from feedback
+    where feed_id = #{feedId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.javatribe.ams.entity.Feedback" >
+    insert into feedback (feed_id, user_id, feed_title, 
+      feed_content, feed_status, feed_modify_date, 
+      feed_create_date)
+    values (#{feedId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{feedTitle,jdbcType=VARCHAR}, 
+      #{feedContent,jdbcType=VARCHAR}, #{feedStatus,jdbcType=BIT}, #{feedModifyDate,jdbcType=TIMESTAMP}, 
+      #{feedCreateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.javatribe.ams.entity.Feedback" >
+    insert into feedback
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="feedId != null" >
+        feed_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="feedTitle != null" >
+        feed_title,
+      </if>
+      <if test="feedContent != null" >
+        feed_content,
+      </if>
+      <if test="feedStatus != null" >
+        feed_status,
+      </if>
+      <if test="feedModifyDate != null" >
+        feed_modify_date,
+      </if>
+      <if test="feedCreateDate != null" >
+        feed_create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="feedId != null" >
+        #{feedId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="feedTitle != null" >
+        #{feedTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="feedContent != null" >
+        #{feedContent,jdbcType=VARCHAR},
+      </if>
+      <if test="feedStatus != null" >
+        #{feedStatus,jdbcType=BIT},
+      </if>
+      <if test="feedModifyDate != null" >
+        #{feedModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feedCreateDate != null" >
+        #{feedCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.javatribe.ams.entity.Feedback" >
+    update feedback
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="feedTitle != null" >
+        feed_title = #{feedTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="feedContent != null" >
+        feed_content = #{feedContent,jdbcType=VARCHAR},
+      </if>
+      <if test="feedStatus != null" >
+        feed_status = #{feedStatus,jdbcType=BIT},
+      </if>
+      <if test="feedModifyDate != null" >
+        feed_modify_date = #{feedModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feedCreateDate != null" >
+        feed_create_date = #{feedCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where feed_id = #{feedId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.javatribe.ams.entity.Feedback" >
+    update feedback
+    set user_id = #{userId,jdbcType=INTEGER},
+      feed_title = #{feedTitle,jdbcType=VARCHAR},
+      feed_content = #{feedContent,jdbcType=VARCHAR},
+      feed_status = #{feedStatus,jdbcType=BIT},
+      feed_modify_date = #{feedModifyDate,jdbcType=TIMESTAMP},
+      feed_create_date = #{feedCreateDate,jdbcType=TIMESTAMP}
+    where feed_id = #{feedId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.javatribe.ams.dao.mapper.ScrapMapper" >
+  <resultMap id="BaseResultMap" type="org.javatribe.ams.entity.Scrap" >
+    <id column="acra_id" property="acraId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="asse_id" property="asseId" jdbcType="INTEGER" />
+    <result column="scra_address" property="scraAddress" jdbcType="VARCHAR" />
+    <result column="scra_reason" property="scraReason" jdbcType="VARCHAR" />
+    <result column="scra_phone" property="scraPhone" jdbcType="VARCHAR" />
+    <result column="scra_note" property="scraNote" jdbcType="VARCHAR" />
+    <result column="scra_status" property="scraStatus" jdbcType="BIT" />
+    <result column="scra_modify_date" property="scraModifyDate" jdbcType="TIMESTAMP" />
+    <result column="scra_create_date" property="scraCreateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    acra_id, user_id, asse_id, scra_address, scra_reason, scra_phone, scra_note, scra_status, 
+    scra_modify_date, scra_create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from scrap
+    where acra_id = #{acraId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from scrap
+    where acra_id = #{acraId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.javatribe.ams.entity.Scrap" >
+    insert into scrap (acra_id, user_id, asse_id, 
+      scra_address, scra_reason, scra_phone, 
+      scra_note, scra_status, scra_modify_date, 
+      scra_create_date)
+    values (#{acraId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{asseId,jdbcType=INTEGER}, 
+      #{scraAddress,jdbcType=VARCHAR}, #{scraReason,jdbcType=VARCHAR}, #{scraPhone,jdbcType=VARCHAR}, 
+      #{scraNote,jdbcType=VARCHAR}, #{scraStatus,jdbcType=BIT}, #{scraModifyDate,jdbcType=TIMESTAMP}, 
+      #{scraCreateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.javatribe.ams.entity.Scrap" >
+    insert into scrap
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="acraId != null" >
+        acra_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="asseId != null" >
+        asse_id,
+      </if>
+      <if test="scraAddress != null" >
+        scra_address,
+      </if>
+      <if test="scraReason != null" >
+        scra_reason,
+      </if>
+      <if test="scraPhone != null" >
+        scra_phone,
+      </if>
+      <if test="scraNote != null" >
+        scra_note,
+      </if>
+      <if test="scraStatus != null" >
+        scra_status,
+      </if>
+      <if test="scraModifyDate != null" >
+        scra_modify_date,
+      </if>
+      <if test="scraCreateDate != null" >
+        scra_create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="acraId != null" >
+        #{acraId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="asseId != null" >
+        #{asseId,jdbcType=INTEGER},
+      </if>
+      <if test="scraAddress != null" >
+        #{scraAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="scraReason != null" >
+        #{scraReason,jdbcType=VARCHAR},
+      </if>
+      <if test="scraPhone != null" >
+        #{scraPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="scraNote != null" >
+        #{scraNote,jdbcType=VARCHAR},
+      </if>
+      <if test="scraStatus != null" >
+        #{scraStatus,jdbcType=BIT},
+      </if>
+      <if test="scraModifyDate != null" >
+        #{scraModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="scraCreateDate != null" >
+        #{scraCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.javatribe.ams.entity.Scrap" >
+    update scrap
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="asseId != null" >
+        asse_id = #{asseId,jdbcType=INTEGER},
+      </if>
+      <if test="scraAddress != null" >
+        scra_address = #{scraAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="scraReason != null" >
+        scra_reason = #{scraReason,jdbcType=VARCHAR},
+      </if>
+      <if test="scraPhone != null" >
+        scra_phone = #{scraPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="scraNote != null" >
+        scra_note = #{scraNote,jdbcType=VARCHAR},
+      </if>
+      <if test="scraStatus != null" >
+        scra_status = #{scraStatus,jdbcType=BIT},
+      </if>
+      <if test="scraModifyDate != null" >
+        scra_modify_date = #{scraModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="scraCreateDate != null" >
+        scra_create_date = #{scraCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where acra_id = #{acraId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.javatribe.ams.entity.Scrap" >
+    update scrap
+    set user_id = #{userId,jdbcType=INTEGER},
+      asse_id = #{asseId,jdbcType=INTEGER},
+      scra_address = #{scraAddress,jdbcType=VARCHAR},
+      scra_reason = #{scraReason,jdbcType=VARCHAR},
+      scra_phone = #{scraPhone,jdbcType=VARCHAR},
+      scra_note = #{scraNote,jdbcType=VARCHAR},
+      scra_status = #{scraStatus,jdbcType=BIT},
+      scra_modify_date = #{scraModifyDate,jdbcType=TIMESTAMP},
+      scra_create_date = #{scraCreateDate,jdbcType=TIMESTAMP}
+    where acra_id = #{acraId,jdbcType=INTEGER}
+  </update>
+</mapper>

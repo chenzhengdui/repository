@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.javatribe.ams.dao.mapper.AssetsMapper" >
+  <resultMap id="BaseResultMap" type="org.javatribe.ams.entity.Assets" >
+    <id column="asse_id" property="asseId" jdbcType="INTEGER" />
+    <result column="asty_id" property="astyId" jdbcType="INTEGER" />
+    <result column="asse_no" property="asseNo" jdbcType="VARCHAR" />
+    <result column="asse_name" property="asseName" jdbcType="VARCHAR" />
+    <result column="asse_price" property="assePrice" jdbcType="DOUBLE" />
+    <result column="asse_place" property="assePlace" jdbcType="VARCHAR" />
+    <result column="asse_modify_date" property="asseModifyDate" jdbcType="TIMESTAMP" />
+    <result column="asse_create_date" property="asseCreateDate" jdbcType="TIMESTAMP" />
+    <result column="asse_status" property="asseStatus" jdbcType="BIT" />
+    <result column="asse_qr_code" property="asseQrCode" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    asse_id, asty_id, asse_no, asse_name, asse_price, asse_place, asse_modify_date, asse_create_date, 
+    asse_status, asse_qr_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from assets
+    where asse_id = #{asseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from assets
+    where asse_id = #{asseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.javatribe.ams.entity.Assets" >
+    insert into assets (asse_id, asty_id, asse_no, 
+      asse_name, asse_price, asse_place, 
+      asse_modify_date, asse_create_date, asse_status, 
+      asse_qr_code)
+    values (#{asseId,jdbcType=INTEGER}, #{astyId,jdbcType=INTEGER}, #{asseNo,jdbcType=VARCHAR}, 
+      #{asseName,jdbcType=VARCHAR}, #{assePrice,jdbcType=DOUBLE}, #{assePlace,jdbcType=VARCHAR}, 
+      #{asseModifyDate,jdbcType=TIMESTAMP}, #{asseCreateDate,jdbcType=TIMESTAMP}, #{asseStatus,jdbcType=BIT}, 
+      #{asseQrCode,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="org.javatribe.ams.entity.Assets" >
+    insert into assets
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="asseId != null" >
+        asse_id,
+      </if>
+      <if test="astyId != null" >
+        asty_id,
+      </if>
+      <if test="asseNo != null" >
+        asse_no,
+      </if>
+      <if test="asseName != null" >
+        asse_name,
+      </if>
+      <if test="assePrice != null" >
+        asse_price,
+      </if>
+      <if test="assePlace != null" >
+        asse_place,
+      </if>
+      <if test="asseModifyDate != null" >
+        asse_modify_date,
+      </if>
+      <if test="asseCreateDate != null" >
+        asse_create_date,
+      </if>
+      <if test="asseStatus != null" >
+        asse_status,
+      </if>
+      <if test="asseQrCode != null" >
+        asse_qr_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="asseId != null" >
+        #{asseId,jdbcType=INTEGER},
+      </if>
+      <if test="astyId != null" >
+        #{astyId,jdbcType=INTEGER},
+      </if>
+      <if test="asseNo != null" >
+        #{asseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="asseName != null" >
+        #{asseName,jdbcType=VARCHAR},
+      </if>
+      <if test="assePrice != null" >
+        #{assePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="assePlace != null" >
+        #{assePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="asseModifyDate != null" >
+        #{asseModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="asseCreateDate != null" >
+        #{asseCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="asseStatus != null" >
+        #{asseStatus,jdbcType=BIT},
+      </if>
+      <if test="asseQrCode != null" >
+        #{asseQrCode,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.javatribe.ams.entity.Assets" >
+    update assets
+    <set >
+      <if test="astyId != null" >
+        asty_id = #{astyId,jdbcType=INTEGER},
+      </if>
+      <if test="asseNo != null" >
+        asse_no = #{asseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="asseName != null" >
+        asse_name = #{asseName,jdbcType=VARCHAR},
+      </if>
+      <if test="assePrice != null" >
+        asse_price = #{assePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="assePlace != null" >
+        asse_place = #{assePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="asseModifyDate != null" >
+        asse_modify_date = #{asseModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="asseCreateDate != null" >
+        asse_create_date = #{asseCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="asseStatus != null" >
+        asse_status = #{asseStatus,jdbcType=BIT},
+      </if>
+      <if test="asseQrCode != null" >
+        asse_qr_code = #{asseQrCode,jdbcType=BIT},
+      </if>
+    </set>
+    where asse_id = #{asseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.javatribe.ams.entity.Assets" >
+    update assets
+    set asty_id = #{astyId,jdbcType=INTEGER},
+      asse_no = #{asseNo,jdbcType=VARCHAR},
+      asse_name = #{asseName,jdbcType=VARCHAR},
+      asse_price = #{assePrice,jdbcType=DOUBLE},
+      asse_place = #{assePlace,jdbcType=VARCHAR},
+      asse_modify_date = #{asseModifyDate,jdbcType=TIMESTAMP},
+      asse_create_date = #{asseCreateDate,jdbcType=TIMESTAMP},
+      asse_status = #{asseStatus,jdbcType=BIT},
+      asse_qr_code = #{asseQrCode,jdbcType=BIT}
+    where asse_id = #{asseId,jdbcType=INTEGER}
+  </update>
+</mapper>

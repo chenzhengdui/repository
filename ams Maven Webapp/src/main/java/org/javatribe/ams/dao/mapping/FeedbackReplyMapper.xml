@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.javatribe.ams.dao.mapper.FeedbackReplyMapper" >
+  <resultMap id="BaseResultMap" type="org.javatribe.ams.entity.FeedbackReply" >
+    <id column="fere_id" property="fereId" jdbcType="INTEGER" />
+    <result column="feed_id" property="feedId" jdbcType="INTEGER" />
+    <result column="admi_id" property="admiId" jdbcType="INTEGER" />
+    <result column="fere_content" property="fereContent" jdbcType="VARCHAR" />
+    <result column="fere_modify_date" property="fereModifyDate" jdbcType="TIMESTAMP" />
+    <result column="fere_create_date" property="fereCreateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fere_id, feed_id, admi_id, fere_content, fere_modify_date, fere_create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from feedback_reply
+    where fere_id = #{fereId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from feedback_reply
+    where fere_id = #{fereId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.javatribe.ams.entity.FeedbackReply" >
+    insert into feedback_reply (fere_id, feed_id, admi_id, 
+      fere_content, fere_modify_date, fere_create_date
+      )
+    values (#{fereId,jdbcType=INTEGER}, #{feedId,jdbcType=INTEGER}, #{admiId,jdbcType=INTEGER}, 
+      #{fereContent,jdbcType=VARCHAR}, #{fereModifyDate,jdbcType=TIMESTAMP}, #{fereCreateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.javatribe.ams.entity.FeedbackReply" >
+    insert into feedback_reply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fereId != null" >
+        fere_id,
+      </if>
+      <if test="feedId != null" >
+        feed_id,
+      </if>
+      <if test="admiId != null" >
+        admi_id,
+      </if>
+      <if test="fereContent != null" >
+        fere_content,
+      </if>
+      <if test="fereModifyDate != null" >
+        fere_modify_date,
+      </if>
+      <if test="fereCreateDate != null" >
+        fere_create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fereId != null" >
+        #{fereId,jdbcType=INTEGER},
+      </if>
+      <if test="feedId != null" >
+        #{feedId,jdbcType=INTEGER},
+      </if>
+      <if test="admiId != null" >
+        #{admiId,jdbcType=INTEGER},
+      </if>
+      <if test="fereContent != null" >
+        #{fereContent,jdbcType=VARCHAR},
+      </if>
+      <if test="fereModifyDate != null" >
+        #{fereModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fereCreateDate != null" >
+        #{fereCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.javatribe.ams.entity.FeedbackReply" >
+    update feedback_reply
+    <set >
+      <if test="feedId != null" >
+        feed_id = #{feedId,jdbcType=INTEGER},
+      </if>
+      <if test="admiId != null" >
+        admi_id = #{admiId,jdbcType=INTEGER},
+      </if>
+      <if test="fereContent != null" >
+        fere_content = #{fereContent,jdbcType=VARCHAR},
+      </if>
+      <if test="fereModifyDate != null" >
+        fere_modify_date = #{fereModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fereCreateDate != null" >
+        fere_create_date = #{fereCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where fere_id = #{fereId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.javatribe.ams.entity.FeedbackReply" >
+    update feedback_reply
+    set feed_id = #{feedId,jdbcType=INTEGER},
+      admi_id = #{admiId,jdbcType=INTEGER},
+      fere_content = #{fereContent,jdbcType=VARCHAR},
+      fere_modify_date = #{fereModifyDate,jdbcType=TIMESTAMP},
+      fere_create_date = #{fereCreateDate,jdbcType=TIMESTAMP}
+    where fere_id = #{fereId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.javatribe.ams.dao.mapper.DepartmentPersonMapper" >
+  <resultMap id="BaseResultMap" type="org.javatribe.ams.entity.DepartmentPerson" >
+    <id column="depe_id" property="depeId" jdbcType="INTEGER" />
+    <result column="depa_id" property="depaId" jdbcType="INTEGER" />
+    <result column="depe_no" property="depeNo" jdbcType="VARCHAR" />
+    <result column="depe_name" property="depeName" jdbcType="VARCHAR" />
+    <result column="depe_phone" property="depePhone" jdbcType="VARCHAR" />
+    <result column="depe_position" property="depePosition" jdbcType="VARCHAR" />
+    <result column="depe_email" property="depeEmail" jdbcType="VARCHAR" />
+    <result column="depe_modify_date" property="depeModifyDate" jdbcType="TIMESTAMP" />
+    <result column="depe_create_date" property="depeCreateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    depe_id, depa_id, depe_no, depe_name, depe_phone, depe_position, depe_email, depe_modify_date, 
+    depe_create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from department_person
+    where depe_id = #{depeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from department_person
+    where depe_id = #{depeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.javatribe.ams.entity.DepartmentPerson" >
+    insert into department_person (depe_id, depa_id, depe_no, 
+      depe_name, depe_phone, depe_position, 
+      depe_email, depe_modify_date, depe_create_date
+      )
+    values (#{depeId,jdbcType=INTEGER}, #{depaId,jdbcType=INTEGER}, #{depeNo,jdbcType=VARCHAR}, 
+      #{depeName,jdbcType=VARCHAR}, #{depePhone,jdbcType=VARCHAR}, #{depePosition,jdbcType=VARCHAR}, 
+      #{depeEmail,jdbcType=VARCHAR}, #{depeModifyDate,jdbcType=TIMESTAMP}, #{depeCreateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.javatribe.ams.entity.DepartmentPerson" >
+    insert into department_person
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="depeId != null" >
+        depe_id,
+      </if>
+      <if test="depaId != null" >
+        depa_id,
+      </if>
+      <if test="depeNo != null" >
+        depe_no,
+      </if>
+      <if test="depeName != null" >
+        depe_name,
+      </if>
+      <if test="depePhone != null" >
+        depe_phone,
+      </if>
+      <if test="depePosition != null" >
+        depe_position,
+      </if>
+      <if test="depeEmail != null" >
+        depe_email,
+      </if>
+      <if test="depeModifyDate != null" >
+        depe_modify_date,
+      </if>
+      <if test="depeCreateDate != null" >
+        depe_create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="depeId != null" >
+        #{depeId,jdbcType=INTEGER},
+      </if>
+      <if test="depaId != null" >
+        #{depaId,jdbcType=INTEGER},
+      </if>
+      <if test="depeNo != null" >
+        #{depeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="depeName != null" >
+        #{depeName,jdbcType=VARCHAR},
+      </if>
+      <if test="depePhone != null" >
+        #{depePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="depePosition != null" >
+        #{depePosition,jdbcType=VARCHAR},
+      </if>
+      <if test="depeEmail != null" >
+        #{depeEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="depeModifyDate != null" >
+        #{depeModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="depeCreateDate != null" >
+        #{depeCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.javatribe.ams.entity.DepartmentPerson" >
+    update department_person
+    <set >
+      <if test="depaId != null" >
+        depa_id = #{depaId,jdbcType=INTEGER},
+      </if>
+      <if test="depeNo != null" >
+        depe_no = #{depeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="depeName != null" >
+        depe_name = #{depeName,jdbcType=VARCHAR},
+      </if>
+      <if test="depePhone != null" >
+        depe_phone = #{depePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="depePosition != null" >
+        depe_position = #{depePosition,jdbcType=VARCHAR},
+      </if>
+      <if test="depeEmail != null" >
+        depe_email = #{depeEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="depeModifyDate != null" >
+        depe_modify_date = #{depeModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="depeCreateDate != null" >
+        depe_create_date = #{depeCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where depe_id = #{depeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.javatribe.ams.entity.DepartmentPerson" >
+    update department_person
+    set depa_id = #{depaId,jdbcType=INTEGER},
+      depe_no = #{depeNo,jdbcType=VARCHAR},
+      depe_name = #{depeName,jdbcType=VARCHAR},
+      depe_phone = #{depePhone,jdbcType=VARCHAR},
+      depe_position = #{depePosition,jdbcType=VARCHAR},
+      depe_email = #{depeEmail,jdbcType=VARCHAR},
+      depe_modify_date = #{depeModifyDate,jdbcType=TIMESTAMP},
+      depe_create_date = #{depeCreateDate,jdbcType=TIMESTAMP}
+    where depe_id = #{depeId,jdbcType=INTEGER}
+  </update>
+</mapper>

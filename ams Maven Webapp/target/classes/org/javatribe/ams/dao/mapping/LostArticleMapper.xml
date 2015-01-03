@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.javatribe.ams.dao.mapper.LostArticleMapper" >
+  <resultMap id="BaseResultMap" type="org.javatribe.ams.entity.LostArticle" >
+    <id column="loar_id" property="loarId" jdbcType="INTEGER" />
+    <result column="loar_title" property="loarTitle" jdbcType="VARCHAR" />
+    <result column="loar_content" property="loarContent" jdbcType="VARCHAR" />
+    <result column="loar_phote" property="loarPhote" jdbcType="VARCHAR" />
+    <result column="loar_phone" property="loarPhone" jdbcType="VARCHAR" />
+    <result column="loar_status" property="loarStatus" jdbcType="TINYINT" />
+    <result column="loar_modify_date" property="loarModifyDate" jdbcType="TIMESTAMP" />
+    <result column="loar_create_date" property="loarCreateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    loar_id, loar_title, loar_content, loar_phote, loar_phone, loar_status, loar_modify_date, 
+    loar_create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from lost_article
+    where loar_id = #{loarId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from lost_article
+    where loar_id = #{loarId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.javatribe.ams.entity.LostArticle" >
+    insert into lost_article (loar_id, loar_title, loar_content, 
+      loar_phote, loar_phone, loar_status, 
+      loar_modify_date, loar_create_date)
+    values (#{loarId,jdbcType=INTEGER}, #{loarTitle,jdbcType=VARCHAR}, #{loarContent,jdbcType=VARCHAR}, 
+      #{loarPhote,jdbcType=VARCHAR}, #{loarPhone,jdbcType=VARCHAR}, #{loarStatus,jdbcType=TINYINT}, 
+      #{loarModifyDate,jdbcType=TIMESTAMP}, #{loarCreateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.javatribe.ams.entity.LostArticle" >
+    insert into lost_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loarId != null" >
+        loar_id,
+      </if>
+      <if test="loarTitle != null" >
+        loar_title,
+      </if>
+      <if test="loarContent != null" >
+        loar_content,
+      </if>
+      <if test="loarPhote != null" >
+        loar_phote,
+      </if>
+      <if test="loarPhone != null" >
+        loar_phone,
+      </if>
+      <if test="loarStatus != null" >
+        loar_status,
+      </if>
+      <if test="loarModifyDate != null" >
+        loar_modify_date,
+      </if>
+      <if test="loarCreateDate != null" >
+        loar_create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loarId != null" >
+        #{loarId,jdbcType=INTEGER},
+      </if>
+      <if test="loarTitle != null" >
+        #{loarTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="loarContent != null" >
+        #{loarContent,jdbcType=VARCHAR},
+      </if>
+      <if test="loarPhote != null" >
+        #{loarPhote,jdbcType=VARCHAR},
+      </if>
+      <if test="loarPhone != null" >
+        #{loarPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="loarStatus != null" >
+        #{loarStatus,jdbcType=TINYINT},
+      </if>
+      <if test="loarModifyDate != null" >
+        #{loarModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loarCreateDate != null" >
+        #{loarCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.javatribe.ams.entity.LostArticle" >
+    update lost_article
+    <set >
+      <if test="loarTitle != null" >
+        loar_title = #{loarTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="loarContent != null" >
+        loar_content = #{loarContent,jdbcType=VARCHAR},
+      </if>
+      <if test="loarPhote != null" >
+        loar_phote = #{loarPhote,jdbcType=VARCHAR},
+      </if>
+      <if test="loarPhone != null" >
+        loar_phone = #{loarPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="loarStatus != null" >
+        loar_status = #{loarStatus,jdbcType=TINYINT},
+      </if>
+      <if test="loarModifyDate != null" >
+        loar_modify_date = #{loarModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loarCreateDate != null" >
+        loar_create_date = #{loarCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where loar_id = #{loarId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.javatribe.ams.entity.LostArticle" >
+    update lost_article
+    set loar_title = #{loarTitle,jdbcType=VARCHAR},
+      loar_content = #{loarContent,jdbcType=VARCHAR},
+      loar_phote = #{loarPhote,jdbcType=VARCHAR},
+      loar_phone = #{loarPhone,jdbcType=VARCHAR},
+      loar_status = #{loarStatus,jdbcType=TINYINT},
+      loar_modify_date = #{loarModifyDate,jdbcType=TIMESTAMP},
+      loar_create_date = #{loarCreateDate,jdbcType=TIMESTAMP}
+    where loar_id = #{loarId,jdbcType=INTEGER}
+  </update>
+</mapper>
